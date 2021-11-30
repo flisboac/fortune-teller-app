@@ -1,0 +1,15 @@
+[Unit]
+Description=Fortune Teller API
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=app-user
+ExecStartPre=
+ExecStart=node /opt/app/api/index.js
+
+[Install]
+WantedBy=multi-user.target

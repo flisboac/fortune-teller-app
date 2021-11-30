@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html lang="en">
+  <title>Fortune Teller</title>
+  <script>
+    function refreshFortune() {
+      const el = document.getElementById('fortune');
+      console.log('fetching fortune...');
+
+      fetch('/api/fortune')
+        .then(response => response.json())
+        .then(({ data: fortune }) => {
+          console.log('Fortune:', fortune);
+          el.innerText = fortune;
+        })
+        .catch(error => {
+          console.error(error);
+          el.innerText = "(ERROR)";
+        });
+    }
+  </script>
+</html>
+
+<body onload="refreshFortune()">
+  <main>
+    <p>Your fortune for today:</p>
+    <p id="fortune"></p>
+  </main>
+</body>
